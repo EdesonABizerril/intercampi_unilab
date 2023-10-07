@@ -1,1 +1,1 @@
-
+export 'translate/translate.dart';

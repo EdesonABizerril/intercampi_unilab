@@ -14,6 +14,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Intercampi',
+      locale: Get.deviceLocale,
+      translations: AppTranslations(),
+      fallbackLocale: Locale(AppLanguage.pt.locate, 'BR'),
       debugShowCheckedModeBanner: false,
       getPages: AppPages.routes,
       initialRoute: AppRoutes.splash,
