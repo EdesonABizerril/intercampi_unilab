@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 
+import '../bindings/bindings.dart';
 import '../ui/screens/screens.dart';
 import 'app_routes.dart';
 
@@ -10,6 +11,7 @@ class AppPages {
     GetPage(
       name: AppRoutes.splash,
       page: SplashScreen.new,
+      binding: SplashBinding(),
     ),
     GetPage(
       name: AppRoutes.home,
