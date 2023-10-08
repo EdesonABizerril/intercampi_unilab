@@ -41,7 +41,9 @@ class SplashTemplate extends StatelessWidget {
             Column(
               children: [
                 CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    AppColors.primary.withOpacity(0.5),
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 32),
