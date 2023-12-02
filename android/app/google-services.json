@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "772905222068",
+    "project_id": "intercampi-230fb",
+    "storage_bucket": "intercampi-230fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:772905222068:android:1ec752f88304a7bae4fce1",
+        "android_client_info": {
+          "package_name": "com.edesonabizerril.newintercampi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC59lEuduFQpSmZmF1pOH9ckydX2qtotjw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -16,6 +16,11 @@ dependencies:
   get: ^4.6.5
   yaml: ^3.1.2
   get_storage: ^2.1.1
+  share_extend: ^2.0.0
+  flutter_widget_from_html_core: ^0.10.6
+  intl: ^0.18.1
+  firebase_core: ^2.18.0
+  cloud_firestore: ^4.10.0
 
 dev_dependencies:
   flutter_test:

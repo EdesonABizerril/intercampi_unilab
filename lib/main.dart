@@ -1,12 +1,24 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'firebase_options.dart';
 import 'routes/routes.dart';
 import 'translation/translation.dart';
 import 'ui/theme/theme.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  await _initializeFirebaseServices();
+  await initializeDateFormatting('pt_Br').then(
+    (_) => runApp(
+      const MyApp(),
+    ),
+  );
+}
+
+Future<void> _initializeFirebaseServices() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 }
 
 class MyApp extends StatelessWidget {

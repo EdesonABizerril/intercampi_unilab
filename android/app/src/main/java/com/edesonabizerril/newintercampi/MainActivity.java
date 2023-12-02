@@ -1,4 +1,4 @@
-package com.edesonabizerril.newintercampi.intercampi;
+package com.edesonabizerril.newintercampi;
 
 import io.flutter.embedding.android.FlutterActivity;
 
