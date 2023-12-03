@@ -25,6 +25,40 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final stateController = Get.put(StateController());
+
+
+  void _startInitialServices() {
+    _initStateNotification();
+
+  void _initStateNotification() {
+    stateController.message.listen((message) {
+      if (message.type != ToastType.empty) {
+        if (mounted) {
+          _toastView(message);
+        }
+        stateController.cleanMessage();
+      }
+    });
+  }
+
+  void _toastView(({String message, ToastType type}) toast) {
+    switch (toast.type) {
+      case ToastType.error:
+        GetxToast.toastError(message: toast.message);
+      case ToastType.info:
+        GetxToast.toastInfo(message: toast.message);
+      case ToastType.success:
+      case ToastType.empty:
+        GetxToast.toastSuccess(message: toast.message);
+  }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Intercampi',
