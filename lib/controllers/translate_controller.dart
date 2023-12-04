@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-import '../../data/cache/cache.dart';
-import '../../translation/app_translations.dart';
+import '../data/cache/cache.dart';
+import '../translation/app_translations.dart';
 
 class TranslateController extends GetxController {
   TranslateController(this.storage);
