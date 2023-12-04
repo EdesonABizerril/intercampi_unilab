@@ -95,3 +95,36 @@ extension DateTimeAgoExtension on DateTime {
   }
 }
 
+extension TimeModelAgoExtension on TimeModel {
+  String toAgoString() {
+    final now = TimeModel.now();
+    final difference = now.difference(this);
+
+    if (difference.inHours < 1) {
+      return difference.inMinutes < 1
+          ? 'now'.tr
+          : 'x_minutes'.tr.replaceAll(
+                "#min",
+                difference.inMinutes.toString(),
+              );
+    } else {
+      return 'x_hours'.tr.replaceAll(
+            "#h",
+            fromMinutesToHours(difference.inMinutes),
+          );
+    }
+  }
+
+  String fromMinutesToHours(int inMinutes) {
+    final hours = (inMinutes / 60).floor();
+    final minutes = inMinutes % 60;
+
+    return '${hours.toString().padLeft(2, '')}:${minutes.toString().padLeft(2, '0')}';
+  }
+
+  String toTimeString() {
+    final hour = this.hour.toString().padLeft(2, '');
+    final minute = this.minute.toString().padLeft(2, '0');
+    return '$hour:$minute';
+  }
+}
