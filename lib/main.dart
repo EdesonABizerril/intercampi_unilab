@@ -1,15 +1,19 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/date_symbol_data_file.dart';
 
+import 'controllers/controllers.dart';
 import 'firebase_options.dart';
+import 'helpers/helpers.dart';
 import 'routes/routes.dart';
 import 'translation/translation.dart';
+import 'ui/components/components.dart';
 import 'ui/theme/theme.dart';
 
 Future<void> main() async {
   await _initializeFirebaseServices();
-  await initializeDateFormatting('pt_Br').then(
+  await initializeDateFormatting('pt_Br', "").then(
     (_) => runApp(
       const MyApp(),
     ),
@@ -21,7 +25,7 @@ Future<void> _initializeFirebaseServices() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
@@ -31,9 +35,28 @@ class MyApp extends StatelessWidget {
 class _MyAppState extends State<MyApp> {
   final stateController = Get.put(StateController());
 
+  bool loading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _startInitialServices();
+  }
 
   void _startInitialServices() {
+    _initStateLoading();
     _initStateNotification();
+  }
+
+  void _initStateLoading() {
+    stateController.loading.listen((listLoadings) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        setState(() {
+          loading = listLoadings.isNotEmpty;
+        });
+      });
+    });
+  }
 
   void _initStateNotification() {
     stateController.message.listen((message) {
@@ -55,7 +78,7 @@ class _MyAppState extends State<MyApp> {
       case ToastType.success:
       case ToastType.empty:
         GetxToast.toastSuccess(message: toast.message);
-  }
+    }
   }
 
   @override
@@ -72,6 +95,12 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       getPages: AppPages.routes,
       initialRoute: AppRoutes.splash,
+      builder: (context, child) {
+        return AppLoading(
+          enable: loading,
+          child: child ?? const SizedBox.shrink(),
+        );
+      },
     );
   }
 }
