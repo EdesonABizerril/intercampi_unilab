@@ -14,4 +14,18 @@ class HomeController extends GetxController {
 
   String get tipesIntercampi => _tipsIntercampi.value;
   DateTime get dateUpdate => _dateUpdate.value;
+
+  @override
+  void onInit() {
+    super.onInit();
+    _getInitialData();
+  }
+
+  Future<void> _getInitialData() async {
+    try {
+      _tipsIntercampi.value = await repository.loadTips();
+    } catch (e) {
+      state.showError("Erro ao carregar dados. Conecte-se a internet e tente novamente.");
+    }
+  }
 }
