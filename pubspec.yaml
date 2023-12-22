@@ -11,6 +11,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
 
   cupertino_icons: ^1.0.2
   get: ^4.6.5
@@ -18,7 +20,7 @@ dependencies:
   get_storage: ^2.1.1
   share_extend: ^2.0.0
   flutter_widget_from_html_core: ^0.10.6
-  intl: ^0.18.1
+  intl: 0.18.0
   firebase_core: ^2.18.0
   cloud_firestore: ^4.10.0
 
