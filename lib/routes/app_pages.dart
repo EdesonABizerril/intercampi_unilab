@@ -21,6 +21,11 @@ class AppPages {
       ),
       bindings: [HomeBinding(), RouteBinding()],
     ),
+    GetPage(
+      name: AppRoutes.route,
+      page: () => RouteScreen(
+        controller: Get.find<RouteController>(),
+      ),
     ),
   ];
 }

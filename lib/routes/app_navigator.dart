@@ -2,6 +2,7 @@
 
 import 'package:get/get.dart';
 
+import '../helpers/helpers.dart';
 import 'app_routes.dart';
 
 abstract class AppNavigator {
@@ -59,9 +60,12 @@ class _AppOffNamed<T> {
 }
 
 class _AppNavigatorTo<T> {
-  // Future<T?>? routeName() {
-  //   return Get.toNamed(
-  //     AppRoutes.home,
-  //   );
-  // }
+  Future<T?>? route({required BusLines type}) {
+    return Get.toNamed(
+      AppRoutes.route,
+      arguments: {
+        'type': type,
+      },
+    );
+  }
 }
