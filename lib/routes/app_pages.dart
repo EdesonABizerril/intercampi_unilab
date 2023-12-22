@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 import '../bindings/bindings.dart';
+import '../controllers/controllers.dart';
 import '../ui/screens/screens.dart';
 import 'app_routes.dart';
 
@@ -15,7 +16,11 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.home,
-      page: HomeScreen.new,
+      page: () => HomeScreen(
+        controller: Get.find<HomeController>(),
+      ),
+      bindings: [HomeBinding(), RouteBinding()],
+    ),
     ),
   ];
 }
