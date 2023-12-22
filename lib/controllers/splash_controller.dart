@@ -1,7 +1,8 @@
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:intercampi/routes/routes.dart';
 import 'package:yaml/yaml.dart';
+
+import '../routes/routes.dart';
 
 class SplashController extends GetxController {
   SplashController();
