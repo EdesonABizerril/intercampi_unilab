@@ -1,8 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
-import 'package:intl/intl_browser.dart';
 
 import 'controllers/controllers.dart';
 import 'firebase_options.dart';
@@ -15,7 +15,7 @@ import 'ui/theme/theme.dart';
 Future<void> main() async {
   await _initializeFirebaseServices();
   Intl.defaultLocale = 'pt_BR';
-  findSystemLocale().then(
+  initializeDateFormatting().then(
     (_) => runApp(
       const MyApp(),
     ),
