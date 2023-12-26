@@ -139,8 +139,10 @@ class HomeTemplate extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: AppColors.grey,
                 ),
-                child: HtmlWidget(
+                child: Obx(
+                  () => HtmlWidget(
                   controller.tipesIntercampi,
+                  ),
                 ),
               ),
             ],

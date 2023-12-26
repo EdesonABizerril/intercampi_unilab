@@ -4,7 +4,7 @@ class RemoteHomeProvider {
   Future<String> loadTips() async {
     try {
       QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance.collection("others").get();
-      return snapshot.docs.where((e) => e.id == "tips").first.data()["home"];
+      return snapshot.docs.first.data()["home"];
     } catch (e) {
       rethrow;
     }
