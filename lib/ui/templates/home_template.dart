@@ -32,20 +32,22 @@ class HomeTemplate extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 8),
             child: PopupMenuButton(
-            itemBuilder: (context) => [
-              PopupMenuItem(
-                value: "feedback",
-                child: Text("feedback".tr),
-              ),
-              PopupMenuItem(
-                value: "about",
-                child: Text("about".tr),
-              ),
-            ],
-            onSelected: (value) {
-              if (value == "feedback") {}
-              if (value == "about") {}
-            },
+              itemBuilder: (context) => [
+                PopupMenuItem(
+                  value: "feedback",
+                  child: Text("feedback".tr),
+                ),
+                PopupMenuItem(
+                  value: "about",
+                  child: Text("about".tr),
+                ),
+              ],
+              onSelected: (value) {
+                if (value == "feedback") {}
+                if (value == "about") {
+                  AppNavigator.to.about();
+                }
+              },
             ),
           ),
         ],
@@ -144,7 +146,7 @@ class HomeTemplate extends StatelessWidget {
                 ),
                 child: Obx(
                   () => HtmlWidget(
-                  controller.tipesIntercampi,
+                    controller.tipesIntercampi,
                   ),
                 ),
               ),

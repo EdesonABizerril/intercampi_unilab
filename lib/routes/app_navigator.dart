@@ -68,4 +68,10 @@ class _AppNavigatorTo<T> {
       },
     );
   }
+
+  Future<T?>? about() {
+    return Get.toNamed(
+      AppRoutes.about,
+    );
+  }
 }
