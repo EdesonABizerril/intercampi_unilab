@@ -47,6 +47,7 @@ class AppBottomBarClock extends StatelessWidget implements PreferredSizeWidget {
                 fontSize: 14,
               ),
             ),
+            const SizedBox(height: 8),
           ],
         ),
       ),

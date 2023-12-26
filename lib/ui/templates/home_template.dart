@@ -29,7 +29,9 @@ class HomeTemplate extends StatelessWidget {
             },
             icon: const Icon(Icons.share),
           ),
-          PopupMenuButton(
+          Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: PopupMenuButton(
             itemBuilder: (context) => [
               PopupMenuItem(
                 value: "feedback",
@@ -44,6 +46,7 @@ class HomeTemplate extends StatelessWidget {
               if (value == "feedback") {}
               if (value == "about") {}
             },
+            ),
           ),
         ],
       ),

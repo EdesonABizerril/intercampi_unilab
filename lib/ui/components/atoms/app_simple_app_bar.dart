@@ -34,6 +34,7 @@ class AppSimpleAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
       ),
       elevation: elevation,
+      titleSpacing: 24,
       backgroundColor: backgroundColor ?? AppColors.primary,
       centerTitle: false,
       actions: actions,
