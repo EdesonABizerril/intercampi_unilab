@@ -19,7 +19,6 @@ abstract class AppColors {
   static final Color red = _AppHexColor("#891515");
   static final Color yallow = _AppHexColor("#B18B20");
   static final Color grey = _AppHexColor("#EAEAEA");
-  static final Color white = _AppHexColor("#ECECEC");
   static final Color black = _AppHexColor("#01090FB2");
   static final Color positive = _AppHexColor("#08B868");
   static final Color positiveMedium = _AppHexColor("#84DCB4");

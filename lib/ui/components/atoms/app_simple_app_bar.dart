@@ -25,15 +25,16 @@ class AppSimpleAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      iconTheme: IconThemeData(
-        color: AppColors.white,
-      ),
+      iconTheme: const IconThemeData(color: Colors.white),
+      scrolledUnderElevation: 0,
+      shadowColor: Colors.transparent,
       title: Text(
         title,
         style: textStyle ??
             AppStyle.body.copyWith(
-              color: AppColors.white,
+              color: Colors.white,
               fontSize: 20,
+              fontWeight: FontWeight.w500,
             ),
       ),
       elevation: elevation,

@@ -56,7 +56,7 @@ class AppCardSelect extends StatelessWidget {
                 from,
                 textAlign: TextAlign.center,
                 style: AppStyle.body.copyWith(
-                  color: AppColors.white,
+                  color: Colors.white,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
@@ -72,7 +72,7 @@ class AppCardSelect extends StatelessWidget {
                 to,
                 textAlign: TextAlign.center,
                 style: AppStyle.body.copyWith(
-                  color: AppColors.white,
+                  color: Colors.white,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),

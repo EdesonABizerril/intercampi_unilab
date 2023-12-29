@@ -34,7 +34,7 @@ class AppBottomBarClock extends StatelessWidget implements PreferredSizeWidget {
               child: Text(
                 now.toTimeString(),
                 style: AppStyle.body.copyWith(
-                  color: AppColors.white,
+                  color: Colors.white,
                   fontWeight: FontWeight.w500,
                   fontSize: 26,
                 ),
@@ -43,7 +43,7 @@ class AppBottomBarClock extends StatelessWidget implements PreferredSizeWidget {
             Text(
               description,
               style: AppStyle.body.copyWith(
-                color: AppColors.white,
+                color: Colors.white,
                 fontSize: 14,
               ),
             ),
