@@ -3,7 +3,6 @@
 /// Map for ptBr translation
 final Map<String, String> ptTranslate = {
   "app_catchphrase": "Dinâmico, rápido e prático",
-  "feedback": "Feedback",
   "about": "Sobre",
   "shared": "Compartilhe",
   "shared_text_with_link":
@@ -13,7 +12,7 @@ final Map<String, String> ptTranslate = {
   "select_a_route": "Selecione uma rota",
   "error_load_route_data": "Falha ao carregar dados da rota",
   "no_data_found": "Nenhuma dado encontrado",
-  "check_the_departure_times": "Confira os horários de saída",
+  "check_the_departure_times": "Lista completa de horários",
   "now": "agora",
   "x_minutes": "#minmin", // ex: 5 min. Do not translate #min
   "x_hours": "#hh", // ex: 5 h. Do not translate #h
