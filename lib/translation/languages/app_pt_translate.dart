@@ -16,4 +16,5 @@ final Map<String, String> ptTranslate = {
   "now": "agora",
   "x_minutes": "#minmin", // ex: 5 min. Do not translate #min
   "x_hours": "#hh", // ex: 5 h. Do not translate #h
+  "notification_title": "Notificação: ",
 };

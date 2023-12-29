@@ -11,7 +11,7 @@ class NsxAppToast extends StatelessWidget {
         label: label,
         backgroundColor: AppColors.positiveMedium,
         borderColor: AppColors.positive,
-        textColor: AppColors.black,
+        textColor: Colors.white,
         onTapClose: onTapClose,
       );
 
@@ -23,7 +23,7 @@ class NsxAppToast extends StatelessWidget {
         label: label,
         backgroundColor: AppColors.negativeMedium,
         borderColor: AppColors.negative,
-        textColor: AppColors.black,
+        textColor: Colors.white,
         onTapClose: onTapClose,
       );
 
@@ -35,7 +35,7 @@ class NsxAppToast extends StatelessWidget {
         label: label,
         backgroundColor: AppColors.primary,
         borderColor: AppColors.primaryDark,
-        textColor: AppColors.black,
+        textColor: Colors.white,
         onTapClose: onTapClose,
       );
 

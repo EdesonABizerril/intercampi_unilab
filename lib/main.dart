@@ -1,4 +1,8 @@
+import 'dart:developer';
+
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -48,6 +52,24 @@ class _MyAppState extends State<MyApp> {
   void _startInitialServices() {
     _initStateLoading();
     _initStateNotification();
+    _initPushNotification();
+  }
+
+  void _initPushNotification() {
+    FirebaseMessaging.instance.requestPermission();
+    if (kDebugMode) {
+      FirebaseMessaging.instance.getToken().then((token) {
+        log("FirebaseMessaging token: $token");
+      });
+    }
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      if (message.notification != null && mounted) {
+        _toastView((
+          message: "notification_title".tr + (message.notification?.body ?? ""),
+          type: ToastType.info,
+        ));
+      }
+    });
   }
 
   void _initStateLoading() {
