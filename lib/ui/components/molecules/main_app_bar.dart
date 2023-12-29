@@ -16,6 +16,7 @@ class MainAppBar extends StatelessWidget {
           title: "Intercampi",
           actions: [
             IconButton(
+              color: Colors.white,
               onPressed: () {
                 sharedTextData(title: "shared".tr, content: "shared_text_with_link".tr);
               },
@@ -24,6 +25,7 @@ class MainAppBar extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(right: 8),
               child: PopupMenuButton(
+                color: Colors.white,
                 itemBuilder: (context) => [
                   PopupMenuItem(
                     value: "about",

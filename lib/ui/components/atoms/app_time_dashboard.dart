@@ -19,10 +19,10 @@ class AppTimeDashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: AppColors.backgroundColorCard,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(20),
         boxShadow: const [
           BoxShadow(
             color: Colors.black12,
@@ -67,7 +67,7 @@ class AppTimeDashboard extends StatelessWidget {
             ],
           ),
           const Padding(
-            padding: EdgeInsets.symmetric(vertical: 8),
+            padding: EdgeInsets.only(bottom: 10, top: 14),
             child: Divider(height: 1, color: Colors.grey),
           ),
           SizedBox(
@@ -85,6 +85,7 @@ class AppTimeDashboard extends StatelessWidget {
                         fontSize: 12.5,
                       ),
                     ),
+                    const SizedBox(height: 4),
                     Text(
                       "${times.before.hour}:${times.before.minute}",
                       style: AppStyle.body.copyWith(
@@ -103,6 +104,7 @@ class AppTimeDashboard extends StatelessWidget {
                         fontSize: 14,
                       ),
                     ),
+                    const SizedBox(height: 3),
                     Text(
                       "${times.next.hour}:${times.next.minute}",
                       style: AppStyle.body.copyWith(
@@ -110,6 +112,7 @@ class AppTimeDashboard extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
+                    const SizedBox(height: 4),
                     Row(
                       children: [
                         Icon(
@@ -137,6 +140,7 @@ class AppTimeDashboard extends StatelessWidget {
                         fontSize: 12.5,
                       ),
                     ),
+                    const SizedBox(height: 4),
                     Text(
                       "${times.after.hour}:${times.after.minute}",
                       style: AppStyle.body.copyWith(

@@ -88,6 +88,7 @@ class _MyAppState extends State<MyApp> {
     return GetMaterialApp(
       title: 'Intercampi',
       theme: ThemeData.light().copyWith(
+        useMaterial3: true,
         scaffoldBackgroundColor: AppColors.backgroundColor,
       ),
       unknownRoute: AppPages.routes.first,

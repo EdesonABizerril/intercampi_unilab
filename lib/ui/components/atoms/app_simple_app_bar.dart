@@ -25,6 +25,9 @@ class AppSimpleAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      iconTheme: IconThemeData(
+        color: AppColors.white,
+      ),
       title: Text(
         title,
         style: textStyle ??

@@ -28,55 +28,57 @@ class AppCardSelect extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child: Container(
-        height: height,
-        width: width,
-        padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-        decoration: BoxDecoration(
-          color: backgroundColor ?? AppColors.grey,
-          borderRadius: BorderRadius.circular(4),
-          border: Border.all(
-            color: borderColor ?? AppColors.borderGrey,
-            width: 1,
+      borderRadius: BorderRadius.circular(20),
+      child: Card(
+        color: backgroundColor ?? AppColors.grey,
+        shape: ShapeBorder.lerp(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
           ),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.shadow,
-              blurRadius: 6,
-              offset: const Offset(2, 6),
-            ),
-          ],
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          2,
         ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              from,
-              textAlign: TextAlign.center,
-              style: AppStyle.body.copyWith(
-                color: AppColors.white,
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+        elevation: 2,
+        child: Container(
+          height: height,
+          width: width,
+          padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                from,
+                textAlign: TextAlign.center,
+                style: AppStyle.body.copyWith(
+                  color: AppColors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            const SizedBox(
-              width: 8,
-            ),
-            icon ?? const SizedBox.shrink(),
-            const SizedBox(
-              width: 8,
-            ),
-            Text(
-              to,
-              textAlign: TextAlign.center,
-              style: AppStyle.body.copyWith(
-                color: AppColors.white,
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+              const SizedBox(
+                width: 8,
               ),
-            ),
-          ],
+              icon ?? const SizedBox.shrink(),
+              const SizedBox(
+                width: 8,
+              ),
+              Text(
+                to,
+                textAlign: TextAlign.center,
+                style: AppStyle.body.copyWith(
+                  color: AppColors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
