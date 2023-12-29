@@ -39,7 +39,7 @@ class HomeTemplate extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Wrap(
                   spacing: 16,
-                  runSpacing: 16,
+                  runSpacing: 12,
                   children: [
                     AppCardSelect(
                       onTap: () {
@@ -97,10 +97,10 @@ class HomeTemplate extends StatelessWidget {
               const SizedBox(height: 32),
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 32),
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   color: AppColors.grey,
-                  borderRadius: BorderRadius.circular(5),
+                  borderRadius: BorderRadius.circular(20),
                   border: Border.all(
                     color: AppColors.borderGrey,
                     width: 1,

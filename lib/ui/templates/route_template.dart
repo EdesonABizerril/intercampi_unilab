@@ -40,98 +40,129 @@ class _RouteTemplateState extends State<RouteTemplate> with SingleTickerProvider
       length: widget.controller.routes.labels.length,
       vsync: this,
     );
-    _tabController.addListener(() {
-      setState(() {});
-    });
   }
 
   void _removeTabController() {
-    _tabController.removeListener(() {});
     _tabController.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final timeList = widget.controller.getTimesList(_tabController.index);
-
     return Scaffold(
       appBar: AppSimpleAppBar(
         title: 'Intercampi',
         elevation: 2,
         backgroundColor: widget.controller.typeSelected.color,
         bottom: AppTabBar(
+          isScrollable: widget.controller.routes.labels.length > 3,
           tabController: _tabController,
           backgroundColor: widget.controller.typeSelected.color,
           tabs: widget.controller.routes.labels.map((label) => Tab(text: label)).toList(),
         ),
       ),
-      body: widget.controller.routes.labels.isEmpty
-          ? Center(
-              child: Text(
-                'no_data_found'.tr,
-                style: AppStyle.body,
-              ),
-            )
-          : ListView.separated(
-              itemCount: widget.controller.listLenght(_tabController.index),
-              padding: const EdgeInsets.only(top: 8, bottom: 60),
-              separatorBuilder: (context, index) => const Divider(height: 0),
-              itemBuilder: (context, index) {
-                final timeFrom = timeList.from[index];
-                final timeTo = timeList.to[index];
-                return Column(
-                  children: [
-                    if (index == 0)
-                      Column(
-                        children: [
-                          StreamBuilder<void>(
-                              stream: Stream.periodic(const Duration(seconds: 1)),
-                              builder: (_, __) {
-                                final fromTimesRange =
-                                    widget.controller.getFromTimesRange(indexTab: _tabController.index);
-                                return Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 16).copyWith(top: 8, bottom: 16),
-                                  child: AppTimeDashboard(
-                                    leftName: widget.controller.typeSelected.fromName,
-                                    rightName: widget.controller.typeSelected.toName,
-                                    times: (
-                                      before: fromTimesRange.before,
-                                      next: fromTimesRange.next,
-                                      after: fromTimesRange.after,
-                                    ),
-                                  ),
-                                );
-                              }),
-                          StreamBuilder<void>(
-                              stream: Stream.periodic(const Duration(seconds: 1)),
-                              builder: (_, __) {
-                                final returnTimesRange =
-                                    widget.controller.getReturnTimesRange(indexTab: _tabController.index);
-                                return Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                                  child: AppTimeDashboard(
-                                    leftName: widget.controller.typeSelected.toName,
-                                    rightName: widget.controller.typeSelected.fromName,
-                                    times: (
-                                      before: returnTimesRange.before,
-                                      next: returnTimesRange.next,
-                                      after: returnTimesRange.after,
-                                    ),
-                                  ),
-                                );
-                              }),
-                          const SizedBox(height: 16),
-                          _TitleList(
-                            type: widget.controller.typeSelected,
-                          ),
-                        ],
-                      ),
-                    _ItemTimeListTile(time: (from: timeFrom, to: timeTo), index: index),
-                  ],
-                );
-              },
-            ),
+      body: TabBarView(
+          controller: _tabController,
+          children: List.generate(widget.controller.routes.labels.length, (index) {
+            final times = widget.controller.getTimesList(index);
+            final listLenght = widget.controller.listLenght(index);
+            final fromTimesRange = widget.controller.getFromTimesRange(indexTab: index);
+            final returnTimesRange = widget.controller.getReturnTimesRange(indexTab: index);
+            return _RouteBody(
+              controller: widget.controller,
+              tabController: _tabController,
+              timeList: (listLenght: listLenght, times: times),
+              fromTimesRange: fromTimesRange,
+              returnTimesRange: returnTimesRange,
+            );
+          })),
     );
+  }
+}
+
+class _RouteBody extends StatefulWidget {
+  const _RouteBody({
+    required this.controller,
+    required this.tabController,
+    required this.timeList,
+    required this.fromTimesRange,
+    required this.returnTimesRange,
+  });
+
+  final RouteController controller;
+  final TabController tabController;
+  final ({int listLenght, ({List<TimeModel> from, List<TimeModel> to}) times}) timeList;
+  final ({TimeModel after, TimeModel before, TimeModel next}) fromTimesRange;
+  final ({TimeModel after, TimeModel before, TimeModel next}) returnTimesRange;
+
+  @override
+  State<_RouteBody> createState() => _RouteBodyState();
+}
+
+class _RouteBodyState extends State<_RouteBody> with SingleTickerProviderStateMixin {
+  @override
+  Widget build(BuildContext context) {
+    return widget.controller.routes.labels.isEmpty
+        ? Center(
+            child: Text(
+              'no_data_found'.tr,
+              style: AppStyle.body,
+            ),
+          )
+        : ListView.builder(
+            itemCount: widget.timeList.listLenght,
+            padding: const EdgeInsets.only(top: 14, bottom: 60),
+            itemBuilder: (context, index) {
+              final timeFrom = widget.timeList.times.from[index];
+              final timeTo = widget.timeList.times.to[index];
+              return Column(
+                children: [
+                  if (index == 0)
+                    Column(
+                      children: [
+                        StreamBuilder<void>(
+                            stream: Stream.periodic(const Duration(seconds: 1)),
+                            builder: (_, __) {
+                              return Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 16).copyWith(top: 8, bottom: 16),
+                                child: AppTimeDashboard(
+                                  leftName: widget.controller.typeSelected.fromName,
+                                  rightName: widget.controller.typeSelected.toName,
+                                  times: (
+                                    before: widget.fromTimesRange.before,
+                                    next: widget.fromTimesRange.next,
+                                    after: widget.fromTimesRange.after,
+                                  ),
+                                ),
+                              );
+                            }),
+                        const SizedBox(height: 8),
+                        StreamBuilder<void>(
+                            stream: Stream.periodic(const Duration(seconds: 1)),
+                            builder: (_, __) {
+                              return Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 16),
+                                child: AppTimeDashboard(
+                                  leftName: widget.controller.typeSelected.toName,
+                                  rightName: widget.controller.typeSelected.fromName,
+                                  times: (
+                                    before: widget.returnTimesRange.before,
+                                    next: widget.returnTimesRange.next,
+                                    after: widget.returnTimesRange.after,
+                                  ),
+                                ),
+                              );
+                            }),
+                        const SizedBox(height: 16),
+                        _TitleList(
+                          type: widget.controller.typeSelected,
+                        ),
+                      ],
+                    ),
+                  _ItemTimeListTile(time: (from: timeFrom, to: timeTo), index: index),
+                ],
+              );
+            },
+          );
   }
 }
 
@@ -148,8 +179,12 @@ class _ItemTimeListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 50,
+      margin: const EdgeInsets.symmetric(horizontal: 20),
       padding: const EdgeInsets.only(left: 20, right: 20),
-      color: index % 2 != 0 ? const Color(0xFFEDEDED) : null,
+      decoration: BoxDecoration(
+        color: index % 2 != 0 ? const Color(0xFFEDEDED) : null,
+        borderRadius: BorderRadius.circular(20),
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -195,53 +230,59 @@ class _TitleList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          alignment: Alignment.center,
-          padding: const EdgeInsets.only(left: 20, right: 20),
-          margin: const EdgeInsets.symmetric(vertical: 12),
-          child: Text(
-            "check_the_departure_times".tr,
-            style: AppStyle.body.copyWith(fontSize: 14),
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        children: [
+          Container(
+            alignment: Alignment.center,
+            padding: const EdgeInsets.only(left: 20, right: 20),
+            margin: const EdgeInsets.symmetric(vertical: 12),
+            child: Text(
+              "check_the_departure_times".tr,
+              style: AppStyle.body.copyWith(fontSize: 14),
+            ),
           ),
-        ),
-        Row(
-          children: [
-            Expanded(
-              child: Container(
-                margin: const EdgeInsets.only(bottom: 6),
-                padding: const EdgeInsets.symmetric(vertical: 4),
-                color: Colors.grey.shade300,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    const Spacer(),
-                    Text(
-                      "${type.fromName}     ",
-                      textAlign: TextAlign.center,
-                      style: AppStyle.body.copyWith(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
+          Row(
+            children: [
+              Expanded(
+                child: Container(
+                  margin: const EdgeInsets.only(bottom: 6),
+                  padding: const EdgeInsets.symmetric(vertical: 4),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade300,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      const Spacer(),
+                      Text(
+                        "${type.fromName}     ",
+                        textAlign: TextAlign.center,
+                        style: AppStyle.body.copyWith(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
-                    ),
-                    const Spacer(),
-                    Text(
-                      "    ${type.toName}",
-                      textAlign: TextAlign.center,
-                      style: AppStyle.body.copyWith(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
+                      const Spacer(),
+                      Text(
+                        "    ${type.toName}",
+                        textAlign: TextAlign.center,
+                        style: AppStyle.body.copyWith(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
-                    ),
-                    const Spacer(),
-                  ],
+                      const Spacer(),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
-        ),
-      ],
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
