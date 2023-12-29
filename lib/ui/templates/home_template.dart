@@ -19,56 +19,13 @@ class HomeTemplate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
-      appBar: AppSimpleAppBar(
-        title: "Intercampi",
-        actions: [
-          IconButton(
-            onPressed: () {
-              sharedTextData(title: "shared".tr, content: "shared_text_with_link".tr);
-            },
-            icon: const Icon(Icons.share),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 8),
-            child: PopupMenuButton(
-              itemBuilder: (context) => [
-                PopupMenuItem(
-                  value: "feedback",
-                  child: Text("feedback".tr),
-                ),
-                PopupMenuItem(
-                  value: "about",
-                  child: Text("about".tr),
-                ),
-              ],
-              onSelected: (value) {
-                if (value == "feedback") {}
-                if (value == "about") {
-                  AppNavigator.to.about();
-                }
-              },
-            ),
-          ),
-        ],
-      ),
       body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
+        physics: const AlwaysScrollableScrollPhysics(),
         child: Container(
-          color: AppColors.backgroundColor,
-          padding: const EdgeInsets.only(bottom: 60),
+          padding: const EdgeInsets.only(bottom: 30),
           child: Column(
             children: [
-              StreamBuilder<void>(
-                stream: Stream.periodic(const Duration(seconds: 1)),
-                builder: (context, snapshot) {
-                  final now = snapshot.data as DateTime? ?? DateTime.now();
-                  return AppBottomBarClock(
-                    now: now,
-                    description: now.ddMMM,
-                  );
-                },
-              ),
+              const MainAppBar(),
               const SizedBox(height: 32),
               Text(
                 "select_a_route".tr,
@@ -139,10 +96,15 @@ class HomeTemplate extends StatelessWidget {
               ),
               const SizedBox(height: 32),
               Container(
-                margin: const EdgeInsets.symmetric(horizontal: 24),
+                margin: const EdgeInsets.symmetric(horizontal: 32),
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: AppColors.grey,
+                  borderRadius: BorderRadius.circular(5),
+                  border: Border.all(
+                    color: AppColors.borderGrey,
+                    width: 1,
+                  ),
                 ),
                 child: Obx(
                   () => HtmlWidget(
