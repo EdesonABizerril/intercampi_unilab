@@ -27,5 +27,9 @@ class AppPages {
         controller: Get.find<RouteController>(),
       ),
     ),
+    GetPage(
+      name: AppRoutes.about,
+      page: () => const AboutScreen(),
+    ),
   ];
 }
