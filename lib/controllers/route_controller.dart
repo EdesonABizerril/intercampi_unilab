@@ -35,8 +35,8 @@ class RouteController extends GetxController {
       (from: routes.fromTimes[index], to: routes.returnTimes[index]);
 
   int listLenght(int index) {
-    final fromLength = routes.fromTimes.length;
-    final toLength = routes.returnTimes.length;
+    final fromLength = routes.fromTimes[index].length;
+    final toLength = routes.returnTimes[index].length;
     return fromLength > toLength ? fromLength : toLength;
   }
 

@@ -112,8 +112,10 @@ class _RouteBodyState extends State<_RouteBody> with SingleTickerProviderStateMi
             itemCount: widget.timeList.listLenght,
             padding: const EdgeInsets.only(top: 14, bottom: 60),
             itemBuilder: (context, index) {
-              final timeFrom = widget.timeList.times.from[index];
-              final timeTo = widget.timeList.times.to[index];
+              final timeFrom =
+                  index < widget.timeList.times.from.length ? widget.timeList.times.from[index] : TimeModel.empty();
+              final timeTo =
+                  index < widget.timeList.times.to.length ? widget.timeList.times.to[index] : TimeModel.empty();
               return Column(
                 children: [
                   if (index == 0)

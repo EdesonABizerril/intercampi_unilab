@@ -48,4 +48,8 @@ class TimeModel {
   }
 
   bool isEqual(DateTime now) => now.hour == int.parse(hour) && now.minute == int.parse(minute);
+
+  static empty() => TimeModel(hour: "", minute: "");
+
+  bool isEmpty() => hour.isEmpty || minute.isEmpty;
 }
