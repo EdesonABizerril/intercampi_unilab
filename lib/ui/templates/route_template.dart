@@ -190,16 +190,24 @@ class _ItemTimeListTile extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text((index + 1).toString()),
+          Container(
+            width: 25,
+            alignment: Alignment.center,
+            child: Text((index + 1) < 10 ? "0${index + 1}" : "${index + 1}"),
+          ),
           Expanded(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text(
-                  "${time.from.hour}:${time.from.minute}",
-                  style: AppStyle.body.copyWith(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
+                Container(
+                  width: 60,
+                  alignment: Alignment.center,
+                  child: Text(
+                    time.from.isEmpty() ? "" : "${time.from.hour}:${time.from.minute}",
+                    style: AppStyle.body.copyWith(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
                 Text(
@@ -209,11 +217,15 @@ class _ItemTimeListTile extends StatelessWidget {
                     color: AppColors.fontSecondary,
                   ),
                 ),
-                Text(
-                  "${time.to.hour}:${time.to.minute}",
-                  style: AppStyle.body.copyWith(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
+                Container(
+                  width: 60,
+                  alignment: Alignment.center,
+                  child: Text(
+                    time.to.isEmpty() ? "" : "${time.to.hour}:${time.to.minute}",
+                    style: AppStyle.body.copyWith(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
               ],
@@ -256,27 +268,45 @@ class _TitleList extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Spacer(),
-                      Text(
-                        "${type.fromName}     ",
-                        textAlign: TextAlign.center,
-                        style: AppStyle.body.copyWith(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
+                      const SizedBox(width: 40),
+                      Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Container(
+                              width: 80,
+                              alignment: Alignment.center,
+                              child: Text(
+                                type.fromName,
+                                style: AppStyle.body.copyWith(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                            Text(
+                              " ",
+                              style: AppStyle.body.copyWith(
+                                fontSize: 16,
+                                color: AppColors.fontSecondary,
+                              ),
+                            ),
+                            Container(
+                              width: 80,
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                type.toName,
+                                style: AppStyle.body.copyWith(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      const Spacer(),
-                      Text(
-                        "    ${type.toName}",
-                        textAlign: TextAlign.center,
-                        style: AppStyle.body.copyWith(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      const Spacer(),
                     ],
                   ),
                 ),
