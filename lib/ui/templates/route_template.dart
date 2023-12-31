@@ -50,7 +50,7 @@ class _RouteTemplateState extends State<RouteTemplate> with SingleTickerProvider
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppSimpleAppBar(
-        title: 'Intercampi',
+        title: "${widget.controller.typeSelected.fromName} - ${widget.controller.typeSelected.toName}",
         elevation: 2,
         backgroundColor: widget.controller.typeSelected.color,
         bottom: AppTabBar(
