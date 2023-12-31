@@ -41,7 +41,7 @@ class AboutTemplate extends StatelessWidget {
             const SizedBox(height: 24),
             const Text(
               'Intercampi é o aplicativo que tem por objetivo facilitar o acesso a todos os horários dos ônibus de intercampi que circulam entre os câmpus da UNILAB \n\n'
-              'Ele combina todas as listas de horários de saída dos ônibus de form simples e direta, com rotas ajustáveis remotamente e atualizações automática, permitindo o controle total de suas viágens',
+              'Ele combina todas as listas de horários de saída dos ônibus de forma simples e direta, com rotas ajustáveis remotamente e atualizações automática, permitindo o controle total de suas viagens',
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.normal,
