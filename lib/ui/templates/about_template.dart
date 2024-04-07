@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../assets/assets.dart';
@@ -13,7 +14,7 @@ class AboutTemplate extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors.primary,
         elevation: 2,
-        title: const Text('Sobre', style: TextStyle(color: Colors.white)),
+        title: Text('about'.tr, style: const TextStyle(color: Colors.white)),
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       bottomNavigationBar: Padding(
@@ -24,12 +25,14 @@ class AboutTemplate extends StatelessWidget {
         ),
         child: TextButton(
           style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all<Color>(AppColors.primary),
-            backgroundColor: MaterialStateProperty.all<Color>(AppColors.backgroundColorCard),
+            foregroundColor:
+                MaterialStateProperty.all<Color>(AppColors.primary),
+            backgroundColor:
+                MaterialStateProperty.all<Color>(AppColors.backgroundColorCard),
           ),
-          onPressed: () =>
-              launchUrl(Uri.parse('https://intercampi.blogspot.com/2019/04/privacy-policy-intercampi-app.html?m=1')),
-          child: const Text("Termos de privacidade"),
+          onPressed: () => launchUrl(Uri.parse(
+              'https://intercampi.blogspot.com/2019/04/privacy-policy-intercampi-app.html?m=1')),
+          child: Text("privacy_terms".tr),
         ),
       ),
       body: SingleChildScrollView(
@@ -37,20 +40,21 @@ class AboutTemplate extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Center(child: Image(image: AssetImage(AppImagePath.logoLandscape), width: 250)),
+            Center(
+                child: Image(
+                    image: AssetImage(AppImagePath.logoLandscape), width: 250)),
             const SizedBox(height: 24),
-            const Text(
-              'Intercampi é o aplicativo que tem por objetivo facilitar o acesso a todos os horários dos ônibus de intercampi que circulam entre os câmpus da UNILAB \n\n'
-              'Ele combina todas as listas de horários de saída dos ônibus de forma simples e direta, com rotas ajustáveis remotamente e atualizações automática, permitindo o controle total de suas viagens',
-              style: TextStyle(
+            Text(
+              'about_description'.tr,
+              style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.normal,
               ),
             ),
             const SizedBox(height: 52),
-            const Text(
-              'Desenvolvido por:',
-              style: TextStyle(
+            Text(
+              'developed_by'.tr,
+              style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.normal,
               ),
@@ -65,12 +69,13 @@ class AboutTemplate extends StatelessWidget {
             ),
             const SizedBox(height: 32),
             GestureDetector(
-              onTap: () => launchUrl(Uri.parse('https://www.linkedin.com/in/edeson-bizerril/')),
+              onTap: () => launchUrl(
+                  Uri.parse('https://www.linkedin.com/in/edeson-bizerril/')),
               child: Column(
                 children: [
-                  const Text(
-                    'Conecte-se comigo:',
-                    style: TextStyle(
+                  Text(
+                    'connect_with_me'.tr,
+                    style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w500,
                     ),
@@ -87,12 +92,13 @@ class AboutTemplate extends StatelessWidget {
             ),
             const SizedBox(height: 24),
             GestureDetector(
-              onTap: () => launchUrl(Uri.parse('https://github.com/EdesonABizerril/intercampi_unilab')),
+              onTap: () => launchUrl(Uri.parse(
+                  'https://github.com/EdesonABizerril/intercampi_unilab')),
               child: Column(
                 children: [
-                  const Text(
-                    'Projeto open-source:',
-                    style: TextStyle(
+                  Text(
+                    'open_source_project'.tr,
+                    style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w500,
                     ),
