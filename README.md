@@ -1,5 +1,18 @@
 # Intercampi - Unilab
 
+O aplicativo Intercampi foi desenvolvido em Dart e Flutter na versão 3.0.5 e 3.10.5, respectivamente. Essa tecnologia foi escolhida por ser bastante moderna, performática e por proporcionar a criação de aplicativos multiplataforma para diversos sistemas operacionais, como Android, iOS, Linux, Mac, Windows e Web. Com apenas um único código, é possível gerar um executável para todas as plataformas disponíveis, sendo necessários alguns pequenos ajustes particulares, em casos específicos.
+
+O backend ou servidor online utilizado foi o Firebase. Esta plataforma foi escolhida devido a grande quantidade de serviços prontos para uso, facilidade de implementação, alta disponibilidade e segurança, além de ter uma excelente documentação e suporte oficial para aplicações Flutter. A maior parte dos serviços disponíveis são gratuitos e o restante possem um limite alto de uso grátis, o que para aplicações de pequeno porte são mais do que suficiente, logo atenderá muito bem todas as necessidades do app Intercampi.
+
+### Preview
+
+![image](https://github.com/EdesonABizerril/intercampi_unilab/assets/27028977/f4d80e0d-1f23-4a2a-9922-0ad827be83dd)
+
+![image](https://github.com/EdesonABizerril/intercampi_unilab/assets/27028977/0e816481-4370-40c6-94a5-940c3a721341)
+
+![image](https://github.com/EdesonABizerril/intercampi_unilab/assets/27028977/278553a3-6409-4477-bda7-08b9670f1107)
+
+
 ## Novas funcionalidades
 - Plataformas suportadas
   
